@@ -2,7 +2,6 @@
 
 
 
-
 struct lista
 {
     int info;

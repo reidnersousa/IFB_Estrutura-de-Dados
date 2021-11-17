@@ -133,7 +133,7 @@
 	<math.h>
 	"ListaEncadeadaSimples.h"
 
-1637180975 c:\users\wilson\projeto do reidner\projeto 1\listaencadeadasimples.h
+1637182867 c:\users\wilson\projeto do reidner\projeto 1\listaencadeadasimples.h
 
 1635953300 source:c:\users\wilson\projeto do reidner\projeto 1\retangulo.c
 	"Retangulo.h"
@@ -150,15 +150,15 @@
 
 1627570328 c:\users\wilson\projeto do reidner\projeto 1\tabelahash.h
 
-1637079813 source:c:\users\wilson\projeto do reidner\projeto 1\lista.c
+1637186531 source:c:\users\wilson\projeto do reidner\projeto 1\lista.c
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
 	"lista.h"
 
-1637180975 c:\users\wilson\projeto do reidner\projeto 1\lista.h
+1637188875 c:\users\wilson\projeto do reidner\projeto 1\lista.h
 
-1637080025 source:c:\users\wilson\projeto do reidner\projeto 1\main.c
+1637188383 source:c:\users\wilson\projeto do reidner\projeto 1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>

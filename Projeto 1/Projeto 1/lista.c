@@ -34,61 +34,129 @@ int  adm()
 }
 
 /**teste**/
-Lista * controleMestre(Lista *mreb, Produto p1 , Produto p2 ){
-    Lista * recebe3;
-    printf("\nPrimeiro cadastro \n");
-    recebe3=controleFuncionario(mreb,p1);
-    printf("\nSegundo cadastro \n");
-    recebe3=controleFuncionario(mreb,p2);
 
-    return recebe3;
+void  DigitaStruct( Lista *recebe3 )
+{
+
+    Produto p1;
+    printf(" Int\n");
+    scanf("%s",&p1.codigo);
+    scanf("%s",&p1.connsumoMedio);
+    scanf("%s",&p1.qtdEstoque);
+    printf("String\n");
+
+    fflush(stdin);
+    fgets(p1.categoria,30, stdin);
+    fflush(stdin);
+
+    fgets(p1.descricao,70, stdin);
+    fflush(stdin);
+
+    fgets(p1.localArmaze,30, stdin);
+    fflush(stdin);
+
+    fgets(p1.nome,30, stdin);
+    fflush(stdin);
+
+
+    inserirProdutoTeste(recebe3, p3);
+
+
+
+
 
 
 }
 
 
-void controleFuncionario( Lista * creb,Produto p1)
+
+Lista*AdicionaProdutoumporUm(Lista * rebvar,Produto p1, Produto p2 )
+
 {
-    Lista * recebe2;
+    Lista *recebe6;
+    int opcao1;
+    int opcao2;
+    printf("________________Seleciones as opções ____________\n\n");
+    printf("1 para Inserir algum produto \n");
+    printf("2 para fecha o programa \n");
+    scanf("%d",&opcao1);
+    if(opcao1 ==1)
+    {
+        printf("\n Qual produto deixa insirir \n");
+        printf("1 para Frango  \n");
+        printf("2 para Maça\n");
+        printf("3 para Milho\n");
+        printf("4 para Desinfetante\n");
+        scanf("%d",&opcao2);
+        if(opcao2==1)
+        {
+            recebe6=inserirProdutoTeste(recebe6,p1);
+            return recebe6;
+        }
+        if(opcao2==2)
+        {
+            recebe6=inserirProdutoTeste(recebe6,p2);
+            return recebe6;
+        }
+    }
+    else
+    {
+        printf("\n Fim do adiciona um por um ");
+        return 0;
+    }
+
+
+}
+void controleFuncionario(Produto p1)
+
+{
+    Lista *creb=inicializaE();
 
     int reposta;
     do
     {
-
         reposta=adm();
 
         if(reposta==1)
-        {
-            recebe2=inserirProdutoTeste(creb,p1);
 
+        {
+
+            DigitaStruct(creb);
+            //recebe2=inserirProdutoTeste(creb,p1);
+            //recebe2=AdicionaProdutoumporUm(recebe2,p1,p2);
 
         }
+
         if(reposta==2)
         {
             int valorCodigo;
             printf("\n Digite o codigo do produto \n");
             scanf("%d",&valorCodigo);
-            buscaProdutoCodigo(recebe2,valorCodigo);
+            buscaProdutoCodigo(creb,valorCodigo);
 
         }
         if(reposta==3)
         {
-            imprimeTodosProduto(recebe2);
+            imprimeTodosProduto(creb);
         }
         if(reposta==4)
         {
             int qtdProduto;
+            int codigo;
             printf("\nDigite a quantidade de produto que deixa comprar(reserva) \n");
             scanf("%d",&qtdProduto);
+            printf("Digite o codigo do produto\n");
+            scanf("%d",&codigo);
 
-            ComprarProduto(recebe2,p1,qtdProduto);
+            ComprarProduto(creb,codigo,qtdProduto);
         }
         if(reposta==5)
         {
-            GuardarMaterial(recebe2,p1);
+            GuardarMaterial(creb,p1);
         }
 
-        if(reposta==6){
+        if(reposta==6)
+        {
             imprimeProduto(p1);
         }
 
@@ -180,6 +248,7 @@ Lista* inicializaE (void)
 
 Lista *inserirProdutoTeste(Lista * l, Produto i)
 {
+
     Produto * prod =(Produto*)malloc(sizeof(Produto));
     Lista*novo =(Lista*)malloc(sizeof(Lista));
 
@@ -203,10 +272,11 @@ Lista* inserirProduto( Lista * l, Produto i)
 
 
 }
-void ComprarProduto(Lista * l,Produto v,int x)
+
+void ComprarProduto(Lista * l,int codigo,int x)
 {
     Lista *p;
-    for(p = l; p->info.codigo != v.codigo; p = p->prox);
+    for(p = l; p->info.codigo != codigo; p = p->prox);
 
     if(p==NULL)
     {

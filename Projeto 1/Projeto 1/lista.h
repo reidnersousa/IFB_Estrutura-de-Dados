@@ -66,7 +66,7 @@ int GuardarMaterial(Lista *l,  Produto v1);
 Lista *inserirProdutoTeste(Lista * l, Produto i);
 
 //Reservar materias mediante solicitações
-void ComprarProduto(Lista * l,Produto v,int x);
+void ComprarProduto(Lista * l,int codigo,int x);
 
 
 /**Fim produtos ***/

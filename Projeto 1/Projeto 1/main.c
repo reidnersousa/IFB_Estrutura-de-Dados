@@ -15,9 +15,11 @@ teste***/
 
 int main()
 {
-    int x;
+
     inicializar();
 
+
+    struct produto x;
 
     struct produto p1= {112,"congelados","Frango","O frango possui carne de coloração branca",
         "Setor Norte",111
@@ -37,20 +39,24 @@ int main()
     };
 
 
+
     struct produto p5= {111,"arroz",NULL,NULL,NULL,NULL};
 
-    Lista*pro1;
-    pro1=inicializaE();
-    printf("Primeiro\n");
-    // pro1=inserirProdutoTeste(pro1,p1);
 
-    //controleFuncionario(pro1,p1);
+    printf("Primeiro\n");
+
+
+   // scanf("s%",&x.categoria);
+
 
     printf("\n\n proximo passo \n\n");
-    pro1=controleMestre(pro1,p1,p2);
-    /*Da erro aqui*/
-    //imprimeTodosProduto(pro1);
-/*da erro aqui */
+    //pro1=controleFuncionario(pro1,p1,p2);
+
+    controleFuncionario(p1);
+    //DigitaStruct(pro1);
+    //pro1=inserirProdutoTeste(pro1,p2);
+
+
 
 
 
