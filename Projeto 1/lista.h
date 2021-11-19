@@ -1,7 +1,7 @@
 
 
 
-
+/*
 struct produto
 {
     int codigo;
@@ -22,14 +22,20 @@ struct lista
     struct lista*prox;
 };
 
-
-
+*/
 
 typedef struct lista Lista;
 
 typedef struct produto Produto;
 
+/**Teste não funciono **/
+/*
+struct produto p6={322,"Produtos de Teste","TEste",
+    "são substâncias que são usando na Limpeza",
+    "Setor De Teste",33};
 
+    */
+/**Teste */
 /**PRODUTO*/
 //Função que faz o cálculo dos estoque mínimos
 float estoqueMin( int tempReposicao, int tempo ,int consumoMedio1);
@@ -54,13 +60,13 @@ void imprimeTodosProduto(Lista *l);
 Lista* buscaProdutoCodigo (Lista* l, int v);
 
 //Função definir onde vai ser guardando uma variavel
-int GuardarMaterial(Lista *l,  Produto v1);
+Lista * GuardarMaterial(Lista *l,char local[30]);
 
 //Função que inserir Produto
 Lista *inserirProdutoTeste(Lista * l, Produto i);
 
 //Reservar materias mediante solicitações
-void ComprarProduto(Lista * l,Produto v,int x);
+void ComprarProduto(Lista * l,int codigo,int x);
 
 
 /**Fim produtos ***/

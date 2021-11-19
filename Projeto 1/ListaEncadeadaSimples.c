@@ -5,11 +5,6 @@
 #include"ListaEncadeadaSimples.h"
 
 
-struct lista
-{
-    int info;
-    struct lista*prox;
-};
 
 /* função de inicialização: retorna uma lista vazia */
 //Funçaõ importante para que  não ocorra bugs

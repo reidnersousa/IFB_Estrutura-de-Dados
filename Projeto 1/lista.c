@@ -2,6 +2,8 @@
 #include<stdio.h>
 #include<math.h>
 #include "lista.h"
+#include <string.h>
+
 
 //struct para calcula o tamanho
 
@@ -12,19 +14,42 @@ struct lista{
     struct lista* lista;
 };
 */
-/**TEste**/
 
-void adm()
+
+struct produto
+{
+    int codigo;
+    char categoria[30];
+    char nome[30];
+    char descricao[70];
+    char localArmaze[30];
+    int qtdEstoque;
+
+    int connsumoMedio;
+    int tempReposicao;
+    int tempo;
+
+};
+struct lista
+{
+    struct   produto info;
+    struct lista*prox;
+};
+
+
+
+int  adm()
 {
     int opc;
 
     printf("________________Seleciones as opções ____________\n\n");
     printf("1 Inserir \n");
     printf("2 Procura Produto pelo codigo\n");
-    printf("3 Imprimir os valores de um produto \n");
+    printf("3 Mostra todos os elementos no estoque\n \n");
     printf("4 Reservar materiais mediante solicitações\n");
     printf("5 Decidir onde vai guarda o produto\n");
-    printf("6 Mostra todos os elementos no estoque\n");
+    printf("6 Imprimir os valores de um produto\n");
+    printf("7 sai do sistema \n ");
 
     scanf("%d",&opc);
 
@@ -34,8 +59,152 @@ void adm()
 
 /**teste**/
 
+Lista *  DigitaStruct( Lista *recebe3 )
+{
 
-int  GuardarMaterial(Lista *l,  Produto v1)
+    Produto p1;
+    printf(" Int\n");
+    printf("Digite o codigo\n");
+    scanf("%d",&p1.codigo);
+    printf("Digite o consumoMedio\n");
+    scanf("%d",&p1.connsumoMedio);
+    printf("Digite a quantidade em Estoque\n");
+    scanf("%d",&p1.qtdEstoque);
+
+    printf("String\n");
+
+    printf("Digite o categoria(Tipos de categoria Enlatados , Produtos de Limpeza , Comestível e Gelados)\n");
+    fflush(stdin);
+    fgets(p1.categoria,30, stdin);
+
+    fflush(stdin);
+    printf("Digite a descrição\n");
+    fgets(p1.descricao,70, stdin);
+
+    //fflush(stdin);
+    //printf("Digite o local de Armazenamento(Setor sul , Setor norte ,Setor Oeste e Setor Leste)\n");
+    //fgets(p1.localArmaze,30, stdin);
+
+    fflush(stdin);
+    printf("Digite o nome \n");
+    fgets(p1.nome,30, stdin);
+
+    fflush(stdin);
+
+    return inserirProdutoTeste(recebe3,p1);
+
+
+
+
+
+}
+
+
+
+Lista*AdicionaProdutoumporUm(Lista * rebvar,Produto p1, Produto p2 )
+
+{
+    Lista *recebe6;
+    int opcao1;
+    int opcao2;
+    printf("________________Seleciones as opções ____________\n\n");
+    printf("1 para Inserir algum produto \n");
+    printf("2 para fecha o programa \n");
+    scanf("%d",&opcao1);
+    if(opcao1 ==1)
+    {
+        printf("\n Qual produto deixa insirir \n");
+        printf("1 para Frango  \n");
+        printf("2 para Maça\n");
+        printf("3 para Milho\n");
+        printf("4 para Desinfetante\n");
+        scanf("%d",&opcao2);
+        if(opcao2==1)
+        {
+            recebe6=inserirProdutoTeste(recebe6,p1);
+            return recebe6;
+        }
+        if(opcao2==2)
+        {
+            recebe6=inserirProdutoTeste(recebe6,p2);
+            return recebe6;
+        }
+    }
+    else
+    {
+        printf("\n Fim do adiciona um por um ");
+        return 0;
+    }
+
+
+}
+void controleFuncionario()
+
+{
+    Lista *creb=inicializaE();
+
+    int reposta;
+    do
+    {
+        reposta=adm();
+
+        if(reposta==1)
+
+        {
+
+            creb=DigitaStruct(creb);
+
+
+        }
+
+        if(reposta==2)
+        {
+            int valorCodigo;
+            printf("\n Digite o codigo do produto \n");
+            scanf("%d",&valorCodigo);
+            buscaProdutoCodigo(creb,valorCodigo);
+
+        }
+        if(reposta==3)
+        {
+            imprimeTodosProduto(creb);
+        }
+        if(reposta==4)
+        {
+            int qtdProduto;
+            int codigo;
+            printf("\nDigite a quantidade de produto que deixa comprar(reserva) \n");
+            scanf("%d",&qtdProduto);
+            printf("Digite o codigo do produto\n");
+            scanf("%d",&codigo);
+
+            ComprarProduto(creb,codigo,qtdProduto);
+        }
+        if(reposta==5)
+        {
+            //erro aqui
+            printf("opção 5\n");
+            // GuardarMaterial(creb);
+        }
+
+        if(reposta==6)
+        {
+            //erro aqui
+            int codigo2;
+            printf("Digite o codigo do produto\n");
+            scanf("%d",&codigo2);
+            imprimeProdutoCodigo(creb,codigo2);
+        }
+
+    }
+
+    while(reposta!=7);
+}
+
+/**TEste**/
+
+
+Lista *  GuardarMaterial(Lista *l,char local[30] )
 {
 
     Lista*recebe;
@@ -46,34 +215,46 @@ int  GuardarMaterial(Lista *l,  Produto v1)
     char s4[30]="Setor Oeste";
     char s5[30]="Qualquer valor";
 
-    for (recebe = l; recebe != NULL; recebe = recebe->prox)
+    if(recebe==NULL)
     {
-        if(strcmp(v1.localArmaze,s1)==0)
-        {
-            printf("Armazenar no Setor Norte");
-            return 1;
-        }
-        if(strcmp(v1.localArmaze,s2)==0)
-        {
-            printf("Armazenar no Setor Sul");
-            return 2;
-        }
-        if(strcmp(v1.localArmaze,s3)==0)
-        {
-            printf("Armazenar no Setor Leste");
-            return 3;
-        }
-        if(strcmp(v1.localArmaze,s4)==0)
-        {
-            printf("Armazenar no Setor Oeste");
-            return 4;
-        }
-        if(strcmp(v1.localArmaze,s5)==0)
-        {
-            printf("Erro ao inserir o Local ");
-            return 5;
-        }
+        printf("Não cadastrado");
+        return ;
     }
+
+
+
+    for (recebe = l; recebe != NULL; recebe = recebe->prox);
+
+
+
+    if(strcmp(recebe->info.localArmaze,local)==0)
+    {
+       // s1=recebe->info.localArmaze;
+        return recebe;
+    }
+    if(strcmp(recebe->info.localArmaze,local)==0)
+    {
+        //recebe->info.localArmaze=s1;
+        return recebe;
+    }
+    /*
+    if(strcmp(v1.localArmaze,s3)==0)
+    {
+        printf("Armazenar no Setor Leste");
+        return 3;
+    }
+    if(strcmp(v1.localArmaze,s4)==0)
+    {
+        printf("Armazenar no Setor Oeste");
+        return 4;
+    }
+    if(strcmp(v1.localArmaze,s5)==0)
+    {
+        printf("Erro ao inserir o Local ");
+        return 5;
+    }
+    */
+
 }
 
 
@@ -110,11 +291,29 @@ Lista* inicializaE (void)
 }
 
 
-/**Teeste **/
-/* FUNCIONA . MINHA DUVIDA COMO INSERIR UM TIPO ESPECIFICO*/
 
-Lista *inserirProdutoTeste(Lista * l, Produto i)
+
+Lista *inserirProdutoTeste(Lista * l,Produto i)
 {
+    Lista *novo=(Lista*)malloc (sizeof(Lista));
+
+    strcpy(novo->info.categoria,i.categoria);
+    novo->info.codigo=i.codigo;
+    novo->info.connsumoMedio=i.connsumoMedio;
+    strcpy(novo->info.descricao,i.descricao);
+    strcpy(novo->info.localArmaze,i.localArmaze);
+    strcpy(novo->info.nome,i.nome);
+    novo->info.qtdEstoque =i.qtdEstoque;
+    novo->info.tempo= i.tempo;
+    novo->info.tempReposicao=i.tempReposicao;
+    novo->prox=l;
+
+    return novo;
+}
+
+Lista *inserirProdutoTesteM(Lista * l, Produto i)
+{
+
     Produto * prod =(Produto*)malloc(sizeof(Produto));
     Lista*novo =(Lista*)malloc(sizeof(Lista));
 
@@ -138,10 +337,11 @@ Lista* inserirProduto( Lista * l, Produto i)
 
 
 }
-void ComprarProduto(Lista * l,Produto v,int x)
+
+void ComprarProduto(Lista * l,int codigo,int x)
 {
     Lista *p;
-    for(p = l; p->info.codigo != v.codigo; p = p->prox);
+    for(p = l; p->info.codigo != codigo; p = p->prox);
 
     if(p==NULL)
     {
@@ -181,6 +381,7 @@ void imprimeTodosProduto(Lista *l)
 
     Lista*recebe;
 
+
     for (recebe = l; recebe != NULL; recebe = recebe->prox)
     {
         printf("_______________PRODUTOS___________________\n");
@@ -197,11 +398,38 @@ void imprimeTodosProduto(Lista *l)
 
 
 
+// arrrumei
+void imprimeProdutoCodigo (Lista *l,int codigo)
+{
+    Produto v;
+    Lista*rece;
 
+    // for( p = l ;  p->info.codigo    != v.codigo; p      = p->prox);
+
+
+    for (rece = l; rece->info.codigo  != codigo; rece = rece->prox);
+
+    if(rece==NULL)
+    {
+        printf("Não cadastrado");
+        return ;
+    }
+
+    // printf("produto :%c quantidade : %d \n", p->info.nome,x );
+    printf("_______________PRODUTOS___________________\n");
+    printf("  codigo     : %d \n",rece->info.codigo);
+    printf("  nome       : %s \n",rece->info.nome);
+    printf("  descricao  : %s \n",rece->info.descricao);
+    printf("  Armaze     : %s \n",rece->info.localArmaze);
+    printf("  qtdEstoque : %d \n",rece->info.qtdEstoque);
+
+
+}
 
 /* função imprime: imprime valores dos elementos */
 void imprimeProduto (Produto v)
 {
+
     printf("_______________PRODUTOS___________________\n");
     printf("  codigo     : %d \n",v.codigo);
     printf("  nome       : %s \n",v.nome);
