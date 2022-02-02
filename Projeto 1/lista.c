@@ -37,7 +37,7 @@ struct lista
 };
 
 
-
+//Função que mostra a opçções
 int  adm()
 {
     int opc;
@@ -57,8 +57,51 @@ int  adm()
 
 }
 
-/**teste**/
+/**Começo do teste**/
+/*
+Lista *  AtualizarDados( Lista *l ,int cod ,char nome[20])
+{
 
+    Lista*recebe;
+
+
+    for (recebe = l; recebe != NULL; recebe = recebe->prox)
+    {
+        recebe->info.codigo;
+        recebe->info.localArmaze;
+
+
+    }
+    return recebe;
+
+
+}
+*/
+
+
+
+
+
+Lista* inserirProduto( Lista * l, Produto i)
+{
+    Lista*novo =(Lista*)malloc(sizeof(Lista));
+
+    novo->info =i;
+    novo->prox=l;
+    return novo;
+
+
+
+}
+/***Fim do Teste ***/
+
+
+
+/**         @Posicao n2
+**          @NomeFuncao DigitaStruct
+*           @Oquefaz    recebe os dados via teclado e retorna uma função "inserirProdutoTeste"
+*           @OquaisOutrasfuncoesdentro "inserirProdutoTeste"
+**/
 Lista *  DigitaStruct( Lista *recebe3 )
 {
 
@@ -73,7 +116,12 @@ Lista *  DigitaStruct( Lista *recebe3 )
 
     printf("String\n");
 
-    printf("Digite o categoria(Tipos de categoria Enlatados , Produtos de Limpeza , Comestível e Gelados)\n");
+    printf("\t____________Digite o categoria_______________\n\n");
+    printf("\tEnlatados\n");
+    printf("\tProdutos de Limpeza\n");
+    printf("\tComestível \n");
+    printf("\tGelados \n");
+
     fflush(stdin);
     fgets(p1.categoria,30, stdin);
 
@@ -81,26 +129,34 @@ Lista *  DigitaStruct( Lista *recebe3 )
     printf("Digite a descrição\n");
     fgets(p1.descricao,70, stdin);
 
-    //fflush(stdin);
-    //printf("Digite o local de Armazenamento(Setor sul , Setor norte ,Setor Oeste e Setor Leste)\n");
-    //fgets(p1.localArmaze,30, stdin);
+    fflush(stdin);
+    printf("\t____________Digite o local de Armazenamento_______________\n\n");
+    printf("\tSetor Sul\n");
+    printf("\tSetor Norte\n");
+    printf("\tSetor Oeste \n");
+    printf("\tSetor Leste \n");
+
+    fgets(p1.localArmaze,30, stdin);
 
     fflush(stdin);
-    printf("Digite o nome \n");
+    printf("Digite o nome do produto  \n");
     fgets(p1.nome,30, stdin);
 
     fflush(stdin);
 
     return inserirProdutoTeste(recebe3,p1);
-
-
-
-
-
 }
 
 
 
+
+
+
+/*Não estou usando*/
+/**
+*                  @posicao nalal
+*                  @
+*/
 Lista*AdicionaProdutoumporUm(Lista * rebvar,Produto p1, Produto p2 )
 
 {
@@ -138,6 +194,22 @@ Lista*AdicionaProdutoumporUm(Lista * rebvar,Produto p1, Produto p2 )
 
 
 }
+
+
+/**
+*           @Posicao n3
+*           @NomeFuncao controleFuncionario
+*           @Oquefaz    funcao que decidir o que fazer
+*           @quaisOutrasFuncoesDentro "adm",
+*                                     1  DigitaStruct,
+*                                     2 "buscarProdutoCodigo",
+*                                     3 "imprimirTodosProduto"
+*                                     4 "ComprarProduto",
+*                                     5 "GuardaMaterial"
+*                                     6 "ImprimirProdutoCodigo"
+*
+*/
+/*FAZ TUDO Principal */
 void controleFuncionario()
 
 {
@@ -153,8 +225,6 @@ void controleFuncionario()
         {
 
             creb=DigitaStruct(creb);
-
-
         }
 
         if(reposta==2)
@@ -182,18 +252,31 @@ void controleFuncionario()
         }
         if(reposta==5)
         {
-            //erro aqui
-            printf("opção 5\n");
-            // GuardarMaterial(creb);
+
+
+            int guardacodigo;
+            printf("\n Digite o codigo do produto para escolhe onde deixa guarda o produto\n");
+            scanf("%d",&guardacodigo);
+            creb=atualizar(creb,guardacodigo);
+
+
         }
 
         if(reposta==6)
         {
-            //erro aqui
             int codigo2;
             printf("Digite o codigo do produto\n");
             scanf("%d",&codigo2);
-            imprimeProdutoCodigo(creb,codigo2);
+
+
+            if(codigo2==creb->info.codigo){
+                printf("Esta funcionado \n");
+                imprimeProdutoCodigo(creb,codigo2);
+            }
+            else{
+                printf("Não esta fucionando ");
+            }
+
         }
 
     }
@@ -201,89 +284,66 @@ void controleFuncionario()
     while(reposta!=7);
 }
 
-/**TEste**/
-
-
-Lista *  GuardarMaterial(Lista *l,char local[30] )
-{
-
-    Lista*recebe;
-
-    char s1[30]="Setor Norte";
-    char s2[30]="Setor Sul";
-    char s3[30]="Setor Leste";
-    char s4[30]="Setor Oeste";
-    char s5[30]="Qualquer valor";
-
-    if(recebe==NULL)
-    {
-        printf("Não cadastrado");
-        return ;
-    }
 
 
 
-    for (recebe = l; recebe != NULL; recebe = recebe->prox);
 
-
-
-    if(strcmp(recebe->info.localArmaze,local)==0)
-    {
-       // s1=recebe->info.localArmaze;
-        return recebe;
-    }
-    if(strcmp(recebe->info.localArmaze,local)==0)
-    {
-        //recebe->info.localArmaze=s1;
-        return recebe;
-    }
-    /*
-    if(strcmp(v1.localArmaze,s3)==0)
-    {
-        printf("Armazenar no Setor Leste");
-        return 3;
-    }
-    if(strcmp(v1.localArmaze,s4)==0)
-    {
-        printf("Armazenar no Setor Oeste");
-        return 4;
-    }
-    if(strcmp(v1.localArmaze,s5)==0)
-    {
-        printf("Erro ao inserir o Local ");
-        return 5;
-    }
-    */
-
-}
-
-
+/**
+*           @Posicao n4
+*           @NomeFuncao "estoqueMin"
+*           @Oquefaz    recebe 3 int faz um calculo estoqueMin e returna um float
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 float estoqueMin( int tempReposicao, int tempo,int consumoMedio1)
 {
 
     return (consumoMedio1*tempReposicao)/tempo;
 }
 
+/**
+*           @Posicao n5
+*           @NomeFuncao "consumoMedio"
+*           @Oquefaz    recebe 2 int faz um calculo de consumo Medio e returna um float
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 float consumoMedio( int consItens, int tempo )
 {
 
     return consItens/tempo;
 }
 
+
+/**
+*           @Posicao n6
+*           @NomeFuncao "calLoteSuprimento"
+*           @Oquefaz    recebe 3 int faz um calculo de lote de Suprimento e returna um float
+*           @quaisOutrasFuncoesDentro   "sqrt"
+*/
 float calLoteSuprimento(int custoPedido, int Demanda, int CustArmazena)
 {
 
     return sqrt((2*custoPedido*Demanda)/CustArmazena);
 }
 
+
+/**
+*           @Posicao n7
+*           @NomeFuncao "estoqueMaxx"
+*           @Oquefaz    recebe 2 int faz um calculo estoqueMax e returna um float
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 float estoqueMax(int estoqueMin1, int  loteReposicao)
 {
     return estoqueMin1+loteReposicao;
 }
 
 
-//typedef struct lista Lista;
-
+/**
+*           @Posicao n8
+*           @NomeFuncao "inicializaE"
+*           @Oquefaz    recebe um void   e returna uma Lista null
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 /* função de inicialização: retorna uma lista vazia */
 Lista* inicializaE (void)
 {
@@ -291,8 +351,13 @@ Lista* inicializaE (void)
 }
 
 
-
-
+/**
+*               @Posicao n9
+*               @NomeFuncao inserirProdutoTeste
+*               @FuncoesDentrodaFuncao
+*               @QqueafuncaoFaz Ela pegas as funções que foram digitas na "DigitaStruct"   e coloca numa lista <novo>
+*               e retorna uma lista
+*/
 Lista *inserirProdutoTeste(Lista * l,Produto i)
 {
     Lista *novo=(Lista*)malloc (sizeof(Lista));
@@ -311,6 +376,10 @@ Lista *inserirProdutoTeste(Lista * l,Produto i)
     return novo;
 }
 
+
+/**
+*               @VoltaAqui
+*/
 Lista *inserirProdutoTesteM(Lista * l, Produto i)
 {
 
@@ -324,20 +393,14 @@ Lista *inserirProdutoTesteM(Lista * l, Produto i)
 
 }
 
-/****Fim do teste ****/
 
-Lista* inserirProduto( Lista * l, Produto i)
-{
-    Lista*novo =(Lista*)malloc(sizeof(Lista));
-
-    novo->info =i;
-    novo->prox=l;
-    return novo;
-
-
-
-}
-
+/**
+*           @Posicao n10
+*           @NomeFuncao "ComprarProduto"
+*           @Oquefaz    recebe uma lista  ,um codigo do produto
+*           e a quantidade de produto  que deixa comprar e adicionar no produto.qtdEstoque
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void ComprarProduto(Lista * l,int codigo,int x)
 {
     Lista *p;
@@ -345,7 +408,7 @@ void ComprarProduto(Lista * l,int codigo,int x)
 
     if(p==NULL)
     {
-        printf("Não cadastrado");
+        printf("Não cadastrado\n");
         return ;
     }
 
@@ -354,6 +417,15 @@ void ComprarProduto(Lista * l,int codigo,int x)
 
 }
 
+
+/**
+*           @Posicao n11
+*           @NomeFuncao "EmitirPedido"
+*           @Oquefaz    recebe uma lista  ,uma Struct produto e um int x (que significa a quantidade).
+*           Verificar se o produto tem no estoque caso tenha vende e produto e notificar falando que
+*           produto foi comprado
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void EmitirPedido(Lista * l, Produto v, int x)
 {
     Lista *p;
@@ -376,6 +448,13 @@ void EmitirPedido(Lista * l, Produto v, int x)
 }
 
 
+/**
+*           @Posicao n12
+*           @NomeFuncao "imprimeTodosProdutos"
+*           @Oquefaz    recebe uma lista
+*           Verificar se tem produto na lista e imprimir os produtos na lista
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void imprimeTodosProduto(Lista *l)
 {
 
@@ -398,7 +477,14 @@ void imprimeTodosProduto(Lista *l)
 
 
 
-// arrrumei
+/**
+*           @Posicao n13
+*           @NomeFuncao "imprimeTodosCodigo"
+*           @Oquefaz    recebe uma lista e um int codigo
+*           Verificar se tem produto na lista tem o msm codigo  e imprimir os produtos na lista.
+*           Caso o codigo seja diferente do que tem na lista ele imprimir produto nao cadastro ..
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void imprimeProdutoCodigo (Lista *l,int codigo)
 {
     Produto v;
@@ -426,7 +512,14 @@ void imprimeProdutoCodigo (Lista *l,int codigo)
 
 }
 
-/* função imprime: imprime valores dos elementos */
+
+/**
+*           @Posicao n14
+*           @NomeFuncao "imprimeProduto"
+*           @Oquefaz    recebe uma struct produto
+*           Imprimir todos os produtos .
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void imprimeProduto (Produto v)
 {
 
@@ -463,6 +556,15 @@ int vazia_compactada (Lista* l)
     return (l == NULL);
 }
 
+
+/**
+*           @Posicao n15
+*           @NomeFuncao "buscaProdutoCodigo"
+*           @Oquefaz  recebe uma lista e um codigo procura o codigo
+*           se o codigo tive na lista imprimir o produto com este codigo
+*           caso contrario  imprimir produto nao encontrado e retorna null
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 /* função busca: busca um elemento na lista */
 //Identificar produto
 Lista* buscaProdutoCodigo (Lista* l, int v)
@@ -488,7 +590,14 @@ Lista* buscaProdutoCodigo (Lista* l, int v)
 }
 
 
-
+/**
+*           @Posicao n16
+*           @NomeFuncao "retiraPeloCodigo"
+*           @Oquefaz  recebe uma lista e um codigo procura o codigo
+*           se o codigo tive na lista retira o produto com este codigo
+*           caso contrario  imprimir produto nao encontrado e retorna null
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 /* função retira: retira elemento da lista */
 Lista* retiraPeloCodigo (Lista* l, int v)
 {
@@ -520,6 +629,14 @@ Lista* retiraPeloCodigo (Lista* l, int v)
     return l;
 }
 
+/**
+*           @Posicao n17
+*           @NomeFuncao "libera"
+*           @Oquefaz  recebe uma lista e um codigo procura o codigo
+*           se o codigo tive na lista retira o produto com este codigo
+*           caso contrario  imprimir produto nao encontrado e retorna null
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 void liberaE (Lista* l)
 {
     Lista* p = l;
@@ -532,7 +649,12 @@ void liberaE (Lista* l)
     }
 }
 
-
+/**
+*           @Posicao n18
+*           @NomeFuncao "criaProduto"
+*           @Oquefaz  recebe uma produto e criar uma lista
+*           @quaisOutrasFuncoesDentro   nenhuma
+*/
 /* função auxiliar: cria e inicializa um nó */
 Lista* criaProduto (Produto v)
 {
@@ -540,6 +662,10 @@ Lista* criaProduto (Produto v)
     p->info = v;
     return p;
 }
+
+
+
+
 /* função insere_ordenado: insere elemento em ordem */
 Lista* insere_ordenadoProduto (Lista* l, Produto v)
 {
@@ -632,4 +758,76 @@ int tamanho(Lista* l)
     }
     return count;
 }
+
+
+
+
+
+
+/***********************************************************************************************
+                                testes
+*************************************************************************************************/
+
+Lista* atualizar (Lista *l,int guardacod)
+{
+    Produto guard;
+    Lista*rece;
+    // for( p = l ;  p->info.codigo    != v.codigo; p      = p->prox);
+
+
+
+
+    for (rece = l; rece->info.codigo  != guardacod; rece = rece->prox);
+
+    if(rece==NULL)
+    {
+        printf("Não cadastrado");
+        return ;
+    }
+
+    printf(" Int\n");
+    printf("Digite o consumoMedio\n");
+    scanf("%d",&guard.connsumoMedio);
+
+
+    printf("String\n");
+
+    printf("\t____________Digite o categoria_______________\n\n");
+
+    fflush(stdin);
+    printf("\t____________Digite o local de Armazenamento_______________\n\n");
+    printf("\tSetor Sul\n");
+    printf("\tSetor Norte\n");
+    printf("\tSetor Oeste \n");
+    printf("\tSetor Leste \n");
+
+    fgets(guard.localArmaze,30, stdin);
+
+    fflush(stdin);
+
+    rece=TrocaGuarda(rece,guard);
+
+    return rece;
+
+
+}
+
+
+Lista *TrocaGuarda(Lista * l,Produto i)
+{
+    Lista *novo=(Lista*)malloc (sizeof(Lista));
+
+
+    novo->info.connsumoMedio=i.connsumoMedio;
+
+
+    strcpy(novo->info.localArmaze,i.localArmaze);
+
+    novo->prox=l;
+
+    return novo;
+}
+
+
+
 

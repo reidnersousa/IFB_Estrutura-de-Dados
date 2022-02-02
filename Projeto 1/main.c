@@ -6,10 +6,18 @@
 #include "lista.h"
 #include "Retangulo.h"
 
-/**8
-teste***/
 
-/**Ultima atualização 16/11/2021 13:26*/
+/**
+***
+****             @autor                   Reidner sousa
+******           @Version                 12.1
+*******          @DataUltimaModificacao   12/01/2022 13:24
+*******          @NomeCodigo              Projeto 1
+******           @TipoCodigo              Lista encadeada
+*****            @CoisasParaFazer
+****                                      Arruma o "atualizar"
+**/
+
 
 //Estrutura autorreferenciada
 
@@ -44,15 +52,16 @@ int main()
     struct produto p5= {111,"arroz",NULL,NULL,NULL,NULL};
 */
 
-    printf("Primeiro\n");
 
+    Lista*lop;
+    //DigitaStructLocal(lop);
+   // AtualizarDados(lop,111,"Feijao com batata");
+    printf("\n<n>");
+    printf("\b<b>");
+    printf("\t<t>");
+    printf("\f<f>");
 
-   // scanf("s%",&x.categoria);
-
-
-    printf("\n\n proximo passo \n\n");
-    //pro1=controleFuncionario(pro1,p1,p2);
-
+    //passa por enquanto
     controleFuncionario();
 
 
